@@ -14,7 +14,7 @@ namespace asciid
 
     void DisplayRow::turnPixelOn(int index)
     {
-        // TODO
+        (void)index;
     }
 
 
