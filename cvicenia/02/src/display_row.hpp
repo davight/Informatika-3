@@ -12,7 +12,7 @@ namespace asciid
     {
         public:
             DisplayRow();
-            int getDisplayCount() const;
+            static int getDisplayCount();
             void turnPixelOn(int index);
             void turnPixelOff(int index);
             void flipPixel(int index);

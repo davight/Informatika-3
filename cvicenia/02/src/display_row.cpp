@@ -14,7 +14,7 @@ namespace asciid
         }
     }
 
-    int DisplayRow::getDisplayCount() const
+    int DisplayRow::getDisplayCount()
     {
         return 8;
     }
@@ -66,7 +66,8 @@ namespace asciid
 
     void DisplayRow::print() const
     {
-        for (int i = 0; i < getDisplayCount(); ++i) {
+        for (int i = 0; i < getDisplayCount(); ++i)
+        {
             Terminal::setTextColor(m_colors[i]);
             std::cout << (isPixelOnUnsafe(i) ? "*" : " ");
             if (isPixelOnUnsafe(i))
@@ -87,6 +88,5 @@ namespace asciid
             throw std::out_of_range("Index out of range");
         }
     }
-
 
 }
