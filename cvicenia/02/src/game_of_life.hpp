@@ -11,7 +11,6 @@ namespace gol
             ~GameOfLife();
             bool cellExists(int row, int col) const;
             void setCellAlive(int row, int col);
-            void setCellDead(int row, int col);
             void tick();
             void run(int tickCount);
             void prinState() const;
@@ -21,6 +20,8 @@ namespace gol
             void copyToBuffer();
             int calculateLivingNeighbours(int row, int col) const;
             bool isCellAlive(int row, int col) const;
+            void internalSetCellDead(int row, int col);
+            void internalSetCellAlive(int row, int col);
             asciid::Display *m_new_display;
             asciid::Display *m_old_display;
     };

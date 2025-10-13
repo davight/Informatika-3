@@ -36,12 +36,14 @@ namespace gol
         }
     }
 
-    void GameOfLife::setCellDead(int row, int col)
+    void GameOfLife::internalSetCellAlive(int row, int col)
     {
-        if (cellExists(row, col))
-        {
-            m_new_display->turnPixelOff(row, col);
-        }
+        m_new_display->turnPixelOn(row, col);
+    }
+
+    void GameOfLife::internalSetCellDead(int row, int col)
+    {
+        m_new_display->turnPixelOff(row, col);
     }
 
     void GameOfLife::tick()
@@ -53,24 +55,20 @@ namespace gol
                 const int livingNeighbours = calculateLivingNeighbours(row, col);
                 if (isCellAlive(row, col))
                 {
-                    if (livingNeighbours < 2) // ma menej ako 2 susedov, umiera
+                    if (livingNeighbours < 2 || livingNeighbours > 3) // ma menej ako 2 alebo viac ako 3 cize umiera
                     {
-                        setCellDead(row, col);
+                        internalSetCellDead(row, col);
                     }
-                    else if (livingNeighbours == 2 || livingNeighbours == 3) // ma prave 2 susedov, zije
+                    else // ma prave 2 alebo 3 susedov, zije
                     {
-                        setCellAlive(row, col);
-                    }
-                    else if (livingNeighbours > 3) // ma viac ako 3 susedov, zomiera
-                    {
-                        setCellDead(row, col);
+                        internalSetCellAlive(row, col);
                     }
                 }
                 else // she dead
                 {
                     if (livingNeighbours == 3)
                     {
-                        setCellAlive(row, col);
+                        internalSetCellAlive(row, col);
                     }
                 }
             }
@@ -80,7 +78,6 @@ namespace gol
 
     void GameOfLife::copyToBuffer()
     {
-        // Copy active to buffer
         for (int col = 0; col < asciid::Display::getColumnCount(); col++)
         {
             for (int row = 0; row < asciid::Display::getRowCount(); row++)
@@ -163,7 +160,7 @@ namespace gol
     void GameOfLife::prinState() const
     {
         asciid::Terminal::clear();
-        m_old_display->printLn();
+        m_new_display->printLn();
     }
 
 }
