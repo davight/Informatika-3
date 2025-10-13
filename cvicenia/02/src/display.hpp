@@ -22,10 +22,10 @@ namespace asciid
             void setPixelColor(int row, int column, Color color);
             void print() const;
             void printLn() const;
+            bool boundCheck(int row, int column) const;
         private:
             static const int N_ROWS = 8;
             DisplayRow *m_rows[N_ROWS];
-            bool boundCheck(int row, int column) const;
             void boundCheckExcept(int row, int column) const;
     };
 

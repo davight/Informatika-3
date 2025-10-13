@@ -28,7 +28,7 @@ namespace asciid
     void DisplayRow::turnPixelOff(int index)
     {
         boundCheckExcept(index);
-        m_pixels &= ~ (0 << index);
+        m_pixels &= ~ (1 << index);
     }
 
     void DisplayRow::flipPixel(int index)

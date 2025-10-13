@@ -1,19 +1,22 @@
+#include <iostream>
+
 #include "terminal.hpp"
 
 #include "display.hpp"
+#include "game_of_life.hpp"
 
 int main()
 {
-    using namespace asciid;
-    Display *display = new Display();
-    display->turnPixelOn(1, 1);
-    display->turnPixelOn(2, 2);
-    display->turnPixelOn(3, 3);
-    display->flipPixel(3, 3);
-    display->turnPixelOn(4, 4);
-    display->setPixelColor(4, 4, Color::Red);
-    display->flipPixel(5, 5);
-    display -> printLn();
-    delete display;
+    gol::GameOfLife *game = gol::GameOfLife::createToad();
+    game->run(100);
+    //game->prinState();
+    //std::cout << game->isCellAlive(1, 1) << std::endl;
+    //std::cout << game->isCellAlive(1, 2) << std::endl;
+    //std::cout << game->isCellAlive(1, 0) << std::endl;
+    return 0;
+    game->prinState();
+    game->tick();
+    game->prinState();
+    game->tick();
     return 0;
 }

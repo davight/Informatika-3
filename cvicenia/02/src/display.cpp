@@ -33,7 +33,7 @@ namespace asciid
     void Display::turnPixelOn(int row, int column)
     {
         boundCheckExcept(row, column);
-        m_rows[row]->turnPixelOn(column);
+        m_rows[row] -> turnPixelOn(column);
     }
 
     void Display::turnPixelOff(int row, int column)
