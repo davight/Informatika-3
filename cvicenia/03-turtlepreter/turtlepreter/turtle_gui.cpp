@@ -93,10 +93,13 @@ void TurtleGUI::populateTreeNodes(Node *node) {
          * Túto premennú je potrebné vhodne inicializovať tak,
          * aby obsahovala textovú reprezentáciu parametra node.
          */
-        const std::string nodeStr = "";
+        const std::string nodeStr = node->toString();
         if (ImGui::TreeNodeEx(node, flags, "%s", nodeStr.c_str())) {
 
-            // TODO
+            for (auto *n : node->getSubnodes())
+            {
+                populateTreeNodes(n);
+            }
 
             ImGui::TreePop();
         }

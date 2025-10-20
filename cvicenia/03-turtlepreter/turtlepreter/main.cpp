@@ -30,9 +30,15 @@ int main(int argc, char *argv[]) {
     tp::Turtle turtle(cTurtleImg, cCenterX, cCenterY);
 
     // TODO
+    tp::CommandJump *jump = new tp::CommandJump(100, 100);
+    tp::Node *otec = new tp::Node();
+    tp::Node *syn1 = new tp::Node(jump);
+    tp::Node *syn2 = new tp::Node(jump);
+    otec->addSubnode(syn1);
+    otec->addSubnode(syn2);
 
     // Interpret the tree from the root.
-    tp::Interpreter interpreter(nullptr);
+    tp::Interpreter interpreter(otec);
 
     // Create GUI.
     tp::TurtleGUI turtleGUI(&turtle, &interpreter);
@@ -41,4 +47,5 @@ int main(int argc, char *argv[]) {
     window->setGUI(&turtleGUI);
     window->run();
     friimgui::Window::releaseWindow();
+    delete otec;
 }
