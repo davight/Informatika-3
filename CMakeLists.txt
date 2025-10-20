@@ -5,3 +5,4 @@ set(CMAKE_CXX_STANDARD 14)
 
 add_subdirectory(cvicenia/01)
 add_subdirectory(cvicenia/02)
+add_subdirectory(cvicenia/03-turtlepreter)
