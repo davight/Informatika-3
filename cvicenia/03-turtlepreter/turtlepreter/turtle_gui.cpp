@@ -39,9 +39,16 @@ void TurtleGUI::buildTopBar() {
     if (ImGui::Button("Run", ImVec2(100, 0))) {
         m_interpreter->interpretAll(*m_turtle);
     }
+    ImGui::SameLine();
     if (ImGui::Button("Step", {100, 0}))
     {
         m_interpreter->interpretStep(*m_turtle);
+    }
+
+    if (ImGui::Button("Reset", {100, 0}))
+    {
+        m_interpreter->reset();
+        m_turtle->reset();
     }
 }
 

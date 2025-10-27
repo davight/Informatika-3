@@ -1,3 +1,5 @@
+#include <iostream>
+
 #include "interpreter.hpp"
 #include "turtle.hpp"
 #include "turtle_gui.hpp"
@@ -38,6 +40,11 @@ int main(int argc, char *argv[]) {
     tp::Node *syn2 = tp::Node::createLeafeNode(rotate);
     otec->addSubnode(syn1);
     otec->addSubnode(syn2);
+    otec->addSubnode(syn1);
+    otec->addSubnode(syn2);
+    otec->addSubnode(syn1);
+    otec->addSubnode(syn2);
+    std::cout << otec->getSubnodes().size() << std::endl;
 
     // Interpret the tree from the root.
     tp::Interpreter interpreter(otec);

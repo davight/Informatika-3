@@ -44,7 +44,7 @@ namespace turtlepreter {
 
     std::string Node::toString() const
     {
-        return m_command == nullptr ? "No Command" : m_command->toString();
+        return (m_command == nullptr ? "No Command" : m_command->toString()) + "|" +m_cursor->toString();
     }
 
     void Node::addSubnode(Node *subNode)
@@ -89,7 +89,7 @@ namespace turtlepreter {
 
     std::string CommandMove::toString()
     {
-        return "Prikaz pre chodenie";
+        return "Command: Move " + std::to_string(m_d);
     }
 
     ///
@@ -109,7 +109,7 @@ namespace turtlepreter {
 
     std::string CommandJump::toString()
     {
-        return "Prikaz pre skok";
+        return "Command: Jump " + std::to_string(m_x) + " " + std::to_string(m_y);
     }
 
     ///
@@ -128,7 +128,7 @@ namespace turtlepreter {
 
     std::string CommandRotate::toString()
     {
-        return "Prikaz pre rotate";
+        return "Command Rotate " + std::to_string(m_angleRad) + "rad";
     }
 
     ///
@@ -148,16 +148,24 @@ namespace turtlepreter {
 
     void Interpreter::interpretStep(Turtle &turtle)
     {
-        if (m_current->getCommand() != nullptr)
+        if (m_current != nullptr)
         {
-            m_current->getCommand()->execute(turtle);
+            if (m_current->getCommand() != nullptr)
+            {
+                m_current->getCommand()->execute(turtle);
+            }
+            moveCurrent();
         }
-        moveCurrent();
     }
 
     void Interpreter::reset()
     {
-
+        m_current = m_root;
+        m_root->getCursor()->reset();
+        for (auto *subnode : m_root->getSubnodes())
+        {
+            subnode->getCursor()->reset();
+        }
     }
 
     bool Interpreter::wasSomethingExecuted()
@@ -235,7 +243,7 @@ namespace turtlepreter {
 
     std::string CursorUp::toString()
     {
-        return "Up";
+        return "Cursor: Up";
     }
 
     ///
@@ -255,6 +263,7 @@ namespace turtlepreter {
 
     void SequentialCursor::reset()
     {
+        std::cout << "Reset cursor" << std::endl;
         m_current = -1;
     }
 
@@ -264,9 +273,9 @@ namespace turtlepreter {
         size_t next = static_cast<size_t>(m_current) + 1;
         if (next >= subnodes.size())
         {
-            return "Up";
+            return "Cursor: Up";
         }
-        return "Child " + std::to_string(next + 1) + "/" + std::to_string(subnodes.size());
+        return "Cursor: Child " + std::to_string(next + 1) + "/" + std::to_string(subnodes.size());
     }
 
 } // namespace turtlepreter
