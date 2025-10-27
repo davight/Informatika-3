@@ -6,6 +6,7 @@
 
 #include <imgui/imgui.h>
 
+#include <numbers>
 #include <string>
 
 #include "heap_monitor.hpp"
@@ -30,11 +31,13 @@ int main(int argc, char *argv[]) {
     tp::Turtle turtle(cTurtleImg, cCenterX, cCenterY);
 
     // TODO
-    tp::CommandJump *jump = new tp::CommandJump(100, 100);
+    //tp::CommandJump *jump = new tp::CommandJump(100, 100);
+    //tp::CommandMove *move = new tp::CommandMove(100);
+    tp::CommandRotate *rotate = new tp::CommandRotate(std::numbers::pi_v<float> / 2);
     tp::Node *otec = new tp::Node();
-    tp::Node *syn1 = new tp::Node(jump);
-    tp::Node *syn2 = new tp::Node(jump);
-    otec->addSubnode(syn1);
+    //tp::Node *syn1 = new tp::Node(jump);
+    tp::Node *syn2 = new tp::Node(rotate);
+    //otec->addSubnode(syn1);
     otec->addSubnode(syn2);
 
     // Interpret the tree from the root.

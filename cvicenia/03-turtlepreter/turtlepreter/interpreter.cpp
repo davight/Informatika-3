@@ -109,9 +109,11 @@ namespace turtlepreter {
     }
 
     void Interpreter::interpterSubtreeNodes(Node *node, Turtle &turtle) {
-        (void)node;
-        (void)turtle;
-        throw std::logic_error("Not implemented yet!");
+        for (auto *subnode : node->getSubnodes())
+        {
+            subnode->getCommand()->execute(turtle);
+            this->interpterSubtreeNodes(subnode, turtle);
+        }
     }
 
 } // namespace turtlepreter
