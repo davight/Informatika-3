@@ -2,7 +2,7 @@
 
 #include <iostream>
 #include <imgui/imgui.h>
-
+#include <cmath>
 #include <stdexcept>
 
 #include "heap_monitor.hpp"
@@ -33,7 +33,7 @@ namespace turtlepreter {
         for (auto &vec : m_path)
         {
             //std::cout << "Drawing line from " << vec.x << ", " << vec.y << " to " << vec.z << ", " << vec.w << std::endl;
-            drawList->AddLine({vec.x, vec.y}, {vec.z, vec.w}, color, thickness);
+            drawList->AddLine({vec.x + p0.x, vec.y + p0.y}, {vec.z + p0.x, vec.w + p0.y}, color, thickness);
         }
         m_image.draw(region, m_transformation);
     }
@@ -44,11 +44,10 @@ namespace turtlepreter {
 
     void Turtle::move(float distance) {
         const ImVec2 currentPosition = m_transformation.translation.getValueOrDef();
-        float newX = currentPosition.x + distance;
-        float newY = currentPosition.y + distance;
+        float rotation = m_transformation.rotation.getValueOrDef();
+        float newX = currentPosition.x + distance * cos(rotation);
+        float newY = currentPosition.y + distance * sin(rotation);
 
-        std::cout << "Moving " << distance << " from " << currentPosition.x << ", " << currentPosition.y << " to " << newX << ", " << newY << std::endl;
-        std::cout << "Rotation " << m_transformation.rotation.getValueOrDef() << std::endl;
         m_path.push_back({currentPosition.x, currentPosition.y, newX, newY});
         m_transformation.translation.setValue({newX, newY});
     }
@@ -56,8 +55,6 @@ namespace turtlepreter {
     void Turtle::jump(float x, float y) {
         // Potrebujeme Vec2 od aktualnej polohy po novu polohu
         ImVec2 currentPosition = m_transformation.translation.getValueOrDef();
-        std::cout << "Current position: " << currentPosition.x << ", " << currentPosition.y << std::endl;
-        std::cout << "Jumping to " << x << ", " << y << std::endl;
         m_path.push_back({currentPosition.x, currentPosition.y, x, y});
         // najprv x pohyb
         /*
@@ -73,8 +70,8 @@ namespace turtlepreter {
         */
         m_transformation.translation.setValue({x, y});
         currentPosition = m_transformation.translation.getValueOrDef();
-        std::cout << "New position: " << currentPosition.x << ", " << currentPosition.y << std::endl;
-        //m_transformation.translation.setValue({x, y}); probably wont need this
+        std::cout << "New position: " << currentPosition.x << currentPosition.y << std::endl;
+        //m_transformation.translation.setValue({x, y});
     }
 
     void Turtle::rotate(float angleRad) {

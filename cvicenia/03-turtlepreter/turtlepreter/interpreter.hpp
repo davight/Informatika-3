@@ -9,18 +9,13 @@
 namespace turtlepreter {
 
 class ICommand;
+class Cursor;
 
 class Node {
 public:
-    /**
-     * Inicializuje vrchol bez príkazu.
-     */
-    Node();
 
-    /**
-     * Inicializuje vrchol s príkazom.
-     */
-    Node(ICommand *command);
+    static Node* createLeafeNode(ICommand *command);
+    static Node* createSequentialNode();
 
     /**
      * Odstráni synov vrcholu.
@@ -41,16 +36,21 @@ public:
      */
     void addSubnode(Node *subnode);
 
+    Cursor* getCursor() const;
+
     Node *getParent() const;
     const std::vector<Node *> &getSubnodes() const;
 
     ICommand *getCommand() const;
 
 private:
+    static Node *createNode(ICommand *command, Cursor *cursor);
+    Node(ICommand *command, Cursor *cursor);
     Node *m_parent;
     std::vector<Node *> m_subnodes;
 
     ICommand *m_command;
+    Cursor *m_cursor;
 };
 
 // ==================================================
@@ -125,6 +125,13 @@ class Interpreter {
 public:
     Interpreter(Node *root);
 
+    void interpretStep(Turtle &turtle);
+    void reset();
+    bool wasSomethingExecuted();
+    bool isFinished();
+    Node* getCurrent();
+    bool stopOnNoveWithoutCommand();
+    void setStopOnNodeWithoutCommand(bool value); // boolean parameter :side_eye:
     /**
      * Rekurzívnou prehliadkou interpretuje príkazy
      * vo všetkých vrcholoch.
@@ -135,9 +142,39 @@ public:
 
 private:
     Node *m_root;
+    Node *m_current;
 
     void interpterSubtreeNodes(Node *node, Turtle &turtle);
+    void moveCurrent();
 };
+
+    class Cursor {
+        public:
+            Cursor();
+            virtual ~Cursor() = default;
+            virtual Node* next() = 0;
+            virtual void reset() = 0;
+            virtual std::string toString() = 0;
+            void setNode(Node *node);
+        protected:
+            Node *m_node;
+    };
+
+    class CursorUp : public Cursor {
+        public:
+            Node* next() override;
+            void reset() override;
+            std::string toString() override;
+    };
+
+    class SequentialCursor : public Cursor {
+        public:
+            Node* next() override;
+            void reset() override;
+            std::string toString() override;
+        private:
+            int m_current = -1;
+    };
 
 } // namespace turtlepreter
 

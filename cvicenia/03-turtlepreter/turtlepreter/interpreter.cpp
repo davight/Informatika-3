@@ -1,18 +1,34 @@
 #include "interpreter.hpp"
-#include <stdexcept>
+
+#include <iostream>
 
 #include "heap_monitor.hpp"
 
 namespace turtlepreter {
 
-    Node::Node()
+    ///
+    /// Node
+    ///
+
+    Node* Node::createLeafeNode(ICommand *command)
     {
-        this->m_command = nullptr;
+        return createNode(command, new CursorUp());
     }
 
-    Node::Node(ICommand *command)
+    Node* Node::createSequentialNode()
     {
-        this->m_command = command;
+        return createNode(nullptr, new SequentialCursor());
+    }
+
+    Node* Node::createNode(ICommand *command, Cursor *cursor)
+    {
+        Node *node = new Node(command, cursor);
+        cursor->setNode(node);
+        return node;
+    }
+
+    Node::Node(ICommand *command, Cursor *cursor) :  m_parent(nullptr), m_command(command), m_cursor(cursor)
+    {
     }
 
     Node::~Node()
@@ -23,6 +39,7 @@ namespace turtlepreter {
         }
         delete m_parent;
         delete m_command;
+        delete m_cursor;
     }
 
     std::string Node::toString() const
@@ -46,10 +63,19 @@ namespace turtlepreter {
         return m_parent;
     }
 
+    Cursor* Node::getCursor() const
+    {
+        return m_cursor;
+    }
+
     const std::vector<Node *>& Node::getSubnodes() const
     {
         return m_subnodes;
     }
+
+    ///
+    /// CommandMove
+    ///
 
     CommandMove::CommandMove(float d)
     {
@@ -65,6 +91,10 @@ namespace turtlepreter {
     {
         return "Prikaz pre chodenie";
     }
+
+    ///
+    /// CommandJump
+    ///
 
     CommandJump::CommandJump(float x, float y)
     {
@@ -82,6 +112,10 @@ namespace turtlepreter {
         return "Prikaz pre skok";
     }
 
+    ///
+    /// CommandRotate
+    ///
+
     CommandRotate::CommandRotate(float ang)
     {
         this->m_angleRad = ang;
@@ -97,12 +131,66 @@ namespace turtlepreter {
         return "Prikaz pre rotate";
     }
 
-    Interpreter::Interpreter(Node *root) : m_root(root) {
+    ///
+    /// Interpreter
+    ///
+
+    Interpreter::Interpreter(Node *root) : m_root(root), m_current(root) {
     }
 
     void Interpreter::interpretAll(Turtle &turtle) {
-        this->interpterSubtreeNodes(m_root, turtle);
+        while (m_current != nullptr)
+        {
+            interpretStep(turtle);
+        }
+        //this->interpterSubtreeNodes(m_root, turtle);
     }
+
+    void Interpreter::interpretStep(Turtle &turtle)
+    {
+        if (m_current->getCommand() != nullptr)
+        {
+            m_current->getCommand()->execute(turtle);
+        }
+        moveCurrent();
+    }
+
+    void Interpreter::reset()
+    {
+
+    }
+
+    bool Interpreter::wasSomethingExecuted()
+    {
+        return false;
+    }
+
+    bool Interpreter::isFinished()
+    {
+        return false;
+    }
+
+    Node *Interpreter::getCurrent()
+    {
+        return nullptr;
+    }
+
+    bool Interpreter::stopOnNoveWithoutCommand()
+    {
+
+    }
+
+    void Interpreter::setStopOnNodeWithoutCommand(bool value)
+    {
+
+    }
+
+    void Interpreter::moveCurrent()
+    {
+        m_current = m_current->getCursor()->next();
+    }
+
+
 
     Node *Interpreter::getRoot() const {
         return m_root;
@@ -114,6 +202,71 @@ namespace turtlepreter {
             subnode->getCommand()->execute(turtle);
             this->interpterSubtreeNodes(subnode, turtle);
         }
+    }
+
+    ///
+    /// Cursor
+    ///
+
+    Cursor::Cursor()
+    {
+        m_node = nullptr;
+    }
+
+
+    void Cursor::setNode(Node *node)
+    {
+        m_node = node;
+    }
+
+    ///
+    /// CursorUp
+    ///
+
+    Node *CursorUp::next()
+    {
+        return m_node->getParent();
+    }
+
+    void CursorUp::reset()
+    {
+        // nic vraj
+    }
+
+    std::string CursorUp::toString()
+    {
+        return "Up";
+    }
+
+    ///
+    /// SequentialCursor
+    ///
+
+    Node *SequentialCursor::next()
+    {
+        m_current++;
+        std::vector<Node *> subnodes = m_node->getSubnodes();
+        if (static_cast<size_t>(m_current) >= subnodes.size())
+        {
+            return m_node->getParent();
+        }
+        return m_node->getSubnodes()[m_current];
+    }
+
+    void SequentialCursor::reset()
+    {
+        m_current = -1;
+    }
+
+    std::string SequentialCursor::toString()
+    {
+        std::vector<Node *> subnodes = m_node->getSubnodes();
+        size_t next = static_cast<size_t>(m_current) + 1;
+        if (next >= subnodes.size())
+        {
+            return "Up";
+        }
+        return "Child " + std::to_string(next + 1) + "/" + std::to_string(subnodes.size());
     }
 
 } // namespace turtlepreter
