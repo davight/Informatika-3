@@ -9,7 +9,7 @@ int main()
     const std::uint64_t a = 0x0F0F0F0F0F0F0F0F;
     const std::uint64_t b = 0xFFFFFFFF00000000;
 
-    setvis::SetVisualizer *sv = new setvis::SetVisualizer();
+    auto *sv = new setvis::SetVisualizer();
 
     auto *intersection = new set_vis::Matrix(sv->calcIntersection(a, b));
     auto *union_ = new set_vis::Matrix(sv->calcUnion(a, b));
@@ -24,6 +24,12 @@ int main()
     sv->showDifference(a, b);
     std::cout << "Complement: \n" << std::endl;
     sv->showComplement(a);
+
+    delete sv;
+    delete intersection;
+    delete union_;
+    delete difference;
+    delete complement;
 
     return 0;
 

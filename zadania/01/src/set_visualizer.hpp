@@ -14,8 +14,8 @@ namespace setvis
 
     class SetVisualizer {
         public:
-            SetVisualizer();
-            ~SetVisualizer();
+            SetVisualizer() = default;
+            ~SetVisualizer() = default;
             uint64_t calcIntersection(uint64_t a, uint64_t b);
             uint64_t calcUnion(uint64_t a, uint64_t b);
             uint64_t calcDifference(uint64_t a, uint64_t b);
@@ -29,4 +29,4 @@ namespace setvis
     };
 }
 
-#endif //INFORMATIKA3_SET_VISUALIZER_HPP
+#endif //SETVIS_SET_VISUALIZER_HPP

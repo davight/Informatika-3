@@ -5,17 +5,10 @@
 #include "set_visualizer.hpp"
 
 #include "matrix.hpp"
-#include "../../../cvicenia/02/src/display.hpp"
+#include "display.hpp"
 
 namespace setvis
 {
-    SetVisualizer::SetVisualizer()
-    {
-    }
-
-    SetVisualizer::~SetVisualizer()
-    {
-    }
 
     uint64_t SetVisualizer::calcIntersection(uint64_t a, uint64_t b)
     {
@@ -34,7 +27,11 @@ namespace setvis
             }
         }
 
-        return mC->getMatrix();
+        uint64_t result = mC->getMatrix();
+        delete mA;
+        delete mB;
+        delete mC;
+        return result;
     }
 
     uint64_t SetVisualizer::calcUnion(uint64_t a, uint64_t b)
@@ -54,7 +51,11 @@ namespace setvis
             }
         }
 
-        return mC->getMatrix();
+        uint64_t result = mC->getMatrix();
+        delete mA;
+        delete mB;
+        delete mC;
+        return result;
     }
 
     uint64_t SetVisualizer::calcDifference(uint64_t a, uint64_t b)
@@ -73,7 +74,11 @@ namespace setvis
             }
         }
 
-        return mC->getMatrix();
+        uint64_t result = mC->getMatrix();
+        delete mA;
+        delete mB;
+        delete mC;
+        return result;
     }
 
     uint64_t SetVisualizer::calcComplement(uint64_t a)
@@ -88,8 +93,10 @@ namespace setvis
                 mC->setValue(i, j, !mA->getValue(i, j));
             }
         }
-
-        return mC->getMatrix();
+        uint64_t result = mC->getMatrix();
+        delete mA;
+        delete mC;
+        return result;
     }
 
     void SetVisualizer::showIntersection(uint64_t a, uint64_t b)
@@ -128,6 +135,8 @@ namespace setvis
             }
         }
         display->printLn();
+        delete display;
+        delete mA;
     }
 
     void SetVisualizer::show(set_vis::Matrix *mA, set_vis::Matrix *mB, set_vis::Matrix *mC)
@@ -151,6 +160,10 @@ namespace setvis
             }
         }
         display->printLn();
+        delete display;
+        delete mA;
+        delete mB;
+        delete mC;
     }
 
 }
