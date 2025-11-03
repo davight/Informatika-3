@@ -37,8 +37,8 @@ int main(int argc, char *argv[]) {
     tp::Runner runner(cRunnerImg, cCenterX, cCenterY);
 
     //tp::CommandJump *jump = new tp::CommandJump(0, 00);
-    tp::CommandMove *move = new tp::CommandMove(100);
-    tp::CommandRotate *rotate = new tp::CommandRotate(std::numbers::pi_v<float> / 3);
+    //tp::CommandMove *move = new tp::CommandMove(100);
+    //tp::CommandRotate *rotate = new tp::CommandRotate(std::numbers::pi_v<float> / 3);
     tp::Node *otec = tp::Node::createSequentialNode();
     //tp::Node *turtleOtec = tp::Node::createSequentialNode();
     //tp::Node *syn1 = tp::Node::createLeafeNode(move);
@@ -57,8 +57,6 @@ int main(int argc, char *argv[]) {
 
     //otec->addSubnode(turtleOtec);
     //otec->addSubnode(runnerOtec);
-
-    std::cout << otec->getSubnodes().size() << std::endl;
 
     // Interpret the tree from the root.
     tp::Interpreter interpreter(otec);

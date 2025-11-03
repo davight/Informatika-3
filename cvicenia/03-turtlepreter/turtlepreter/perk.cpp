@@ -40,7 +40,6 @@ namespace turtlepreter
 
     void Runner::reset()
     {
-        std::cout << "Resetting runner" << std::endl;
         Controllable::reset();
     }
 

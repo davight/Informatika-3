@@ -207,7 +207,6 @@ namespace turtlepreter {
 
     void SequentialCursor::reset()
     {
-        std::cout << "Reset cursor" << std::endl;
         m_current = -1;
     }
 
