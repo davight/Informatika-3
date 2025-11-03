@@ -10,7 +10,7 @@ namespace turtlepreter {
 
 class TurtleGUI : public friimgui::GUIBuilder {
 public:
-    TurtleGUI(Turtle *turtle, Interpreter *interpreter);
+    TurtleGUI(Controllable *controllable, Interpreter *interpreter);
 
     void build() override;
 
@@ -21,7 +21,7 @@ private:
     void buildRightPanel();
     void populateTreeNodes(Node *node);
 
-    Turtle *m_turtle;
+    Controllable *m_controllable;
     Interpreter *m_interpreter;
     size_t m_widthLeftPanel;
 };

@@ -5,6 +5,8 @@ target_sources(turtlepreter PRIVATE
         turtle.cpp
         turtle_gui.cpp
         main.cpp
+        controllable.cpp
+        perk.cpp
 )
 
 target_compile_options(turtlepreter PRIVATE

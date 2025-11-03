@@ -74,85 +74,31 @@ namespace turtlepreter {
     }
 
     ///
-    /// CommandMove
-    ///
-
-    CommandMove::CommandMove(float d)
-    {
-        this->m_d = d;
-    }
-
-    void CommandMove::execute(Turtle &turtle)
-    {
-        turtle.move(this->m_d);
-    }
-
-    std::string CommandMove::toString()
-    {
-        return "Command: Move " + std::to_string(m_d);
-    }
-
-    ///
-    /// CommandJump
-    ///
-
-    CommandJump::CommandJump(float x, float y)
-    {
-        this->m_x = x;
-        this->m_y = y;
-    }
-
-    void CommandJump::execute(Turtle &turtle)
-    {
-        turtle.jump(this->m_x, this->m_y);
-    }
-
-    std::string CommandJump::toString()
-    {
-        return "Command: Jump " + std::to_string(m_x) + " " + std::to_string(m_y);
-    }
-
-    ///
-    /// CommandRotate
-    ///
-
-    CommandRotate::CommandRotate(float ang)
-    {
-        this->m_angleRad = ang;
-    }
-
-    void CommandRotate::execute(Turtle &turtle)
-    {
-        turtle.rotate(m_angleRad);
-    }
-
-    std::string CommandRotate::toString()
-    {
-        return "Command Rotate " + std::to_string(m_angleRad) + "rad";
-    }
-
-    ///
     /// Interpreter
     ///
 
     Interpreter::Interpreter(Node *root) : m_root(root), m_current(root) {
     }
 
-    void Interpreter::interpretAll(Turtle &turtle) {
+    void Interpreter::interpretAll(Controllable &controllable) {
         while (m_current != nullptr)
         {
-            interpretStep(turtle);
+            interpretStep(controllable);
         }
         //this->interpterSubtreeNodes(m_root, turtle);
     }
 
-    void Interpreter::interpretStep(Turtle &turtle)
+    void Interpreter::interpretStep(Controllable &controllable)
     {
         if (m_current != nullptr)
         {
             if (m_current->getCommand() != nullptr)
             {
-                m_current->getCommand()->execute(turtle);
+                if (!m_current->getCommand()->canBeExecuted(controllable)) // if if if if if chain ahh
+                {
+                    throw std::runtime_error("Command cannot be executed");
+                }
+                m_current->getCommand()->execute(controllable);
             }
             moveCurrent();
         }
@@ -185,12 +131,12 @@ namespace turtlepreter {
 
     bool Interpreter::stopOnNoveWithoutCommand()
     {
-
+        return false;
     }
 
     void Interpreter::setStopOnNodeWithoutCommand(bool value)
     {
-
+        (void)value;
     }
 
     void Interpreter::moveCurrent()
@@ -198,17 +144,15 @@ namespace turtlepreter {
         m_current = m_current->getCursor()->next();
     }
 
-
-
     Node *Interpreter::getRoot() const {
         return m_root;
     }
 
-    void Interpreter::interpterSubtreeNodes(Node *node, Turtle &turtle) {
+    void Interpreter::interpterSubtreeNodes(Node *node, Controllable &controllable) {
         for (auto *subnode : node->getSubnodes())
         {
-            subnode->getCommand()->execute(turtle);
-            this->interpterSubtreeNodes(subnode, turtle);
+            subnode->getCommand()->execute(controllable);
+            this->interpterSubtreeNodes(subnode, controllable);
         }
     }
 

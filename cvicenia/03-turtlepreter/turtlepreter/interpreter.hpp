@@ -62,24 +62,34 @@ public:
     /**
      * Vykoná akciu s korytnačkou @p turtle
      */
-    virtual void execute(Turtle &turtle) = 0;
+    virtual void execute(Controllable &controllable) = 0;
 
     /**
      * Vráti reťazec popisujúci príkaz.
      */
     virtual std::string toString() = 0;
+
+    virtual bool canBeExecuted(Controllable &controllable) = 0;
 };
 
 // --------------------------------------------------
 
+    class TurtleCommand : public ICommand
+    {
+        protected:
+            void execute(Controllable &controllable) final;
+            bool canBeExecuted(Controllable &controllable) override;
+            virtual void executeOnTurtle(Turtle &turtle) = 0;
+    };
+
 /**
  * Posunie korytnačku o zadanú vzdialenosť v smere jej natočenia.
  */
-class CommandMove : public ICommand {
+class CommandMove : public TurtleCommand {
 public:
     CommandMove(float d);
 
-    void execute(Turtle &turtle) override;
+    void executeOnTurtle(Turtle &turtle) override;
     std::string toString() override;
 
 private:
@@ -91,11 +101,11 @@ private:
 /**
  * Presunie korytnačku na zadané súradnice.
  */
-class CommandJump : public ICommand {
+class CommandJump : public TurtleCommand {
 public:
     CommandJump(float x, float y);
 
-    void execute(Turtle &turtle) override;
+    void executeOnTurtle(Turtle &turtle) override;
     std::string toString() override;
 
 private:
@@ -108,11 +118,11 @@ private:
 /**
  * Zmení natočenie korytnačky.
  */
-class CommandRotate : public ICommand {
+class CommandRotate : public TurtleCommand {
 public:
     CommandRotate(float angleRad);
 
-    void execute(Turtle &turtle) override;
+    void executeOnTurtle(Turtle &turtle) override;
     std::string toString() override;
 
 private:
@@ -125,7 +135,7 @@ class Interpreter {
 public:
     Interpreter(Node *root);
 
-    void interpretStep(Turtle &turtle);
+    void interpretStep(Controllable &controllable);
     void reset();
     bool wasSomethingExecuted();
     bool isFinished();
@@ -136,7 +146,7 @@ public:
      * Rekurzívnou prehliadkou interpretuje príkazy
      * vo všetkých vrcholoch.
      */
-    void interpretAll(Turtle &turtle);
+    void interpretAll(Controllable &controllable);
 
     Node *getRoot() const;
 
@@ -144,7 +154,7 @@ private:
     Node *m_root;
     Node *m_current;
 
-    void interpterSubtreeNodes(Node *node, Turtle &turtle);
+    void interpterSubtreeNodes(Node *node, Controllable &controllable);
     void moveCurrent();
 };
 

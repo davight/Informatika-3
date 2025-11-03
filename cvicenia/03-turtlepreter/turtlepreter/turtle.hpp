@@ -6,20 +6,22 @@
 
 #include <vector>
 
+#include "controllable.hpp"
+
 namespace turtlepreter {
 
-class Turtle {
+class Turtle : public Controllable {
 public:
     Turtle(const std::string &imgPath);
     Turtle(const std::string &imgPath, float centerX, float centerY);
 
-    void draw(const friimgui::Region &region);
+    void draw(const friimgui::Region &region) override;
 
     /**
      * Odstráni históriu pohybu a vráti korytnačku na pôvodné miesto
      * s pôvodným natočením.
      */
-    void reset();
+    void reset() override;
 
     /**
      * Posunie korytnačku o @p distance v smere jej natočenia.
@@ -37,8 +39,6 @@ public:
     void rotate(float angleRad);
 
 private:
-    friimgui::Transformation m_transformation;
-    friimgui::Image m_image;
     std::vector<ImVec4> m_path;
 };
 

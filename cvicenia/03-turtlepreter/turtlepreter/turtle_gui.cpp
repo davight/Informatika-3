@@ -3,11 +3,12 @@
 #include <libfriimgui/types.hpp>
 
 #include <imgui/imgui.h>
+#include "heap_monitor.hpp"
 
 namespace turtlepreter {
 
-TurtleGUI::TurtleGUI(Turtle *turtle, Interpreter *interpreter) :
-    m_turtle(turtle),
+TurtleGUI::TurtleGUI(Controllable *controllable, Interpreter *interpreter) :
+    m_controllable(controllable),
     m_interpreter(interpreter),
     m_widthLeftPanel(200) {
 }
@@ -37,18 +38,18 @@ void TurtleGUI::build() {
 
 void TurtleGUI::buildTopBar() {
     if (ImGui::Button("Run", ImVec2(100, 0))) {
-        m_interpreter->interpretAll(*m_turtle);
+        m_interpreter->interpretAll(*m_controllable);
     }
     ImGui::SameLine();
     if (ImGui::Button("Step", {100, 0}))
     {
-        m_interpreter->interpretStep(*m_turtle);
+        m_interpreter->interpretStep(*m_controllable);
     }
 
     if (ImGui::Button("Reset", {100, 0}))
     {
         m_interpreter->reset();
-        m_turtle->reset();
+        m_controllable->reset();
     }
 }
 
@@ -90,7 +91,7 @@ void TurtleGUI::buildRightPanel() {
     );
     region.reserveSpace();
 
-    m_turtle->draw(region);
+    m_controllable->draw(region);
 
     ImGui::EndChild();
 }
