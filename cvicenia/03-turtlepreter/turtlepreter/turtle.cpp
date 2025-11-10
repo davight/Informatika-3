@@ -9,7 +9,6 @@
 
 namespace turtlepreter {
 
-
     Turtle::Turtle(const std::string &imgPath) : Controllable(imgPath)
     {
     }
@@ -17,7 +16,6 @@ namespace turtlepreter {
     Turtle::Turtle(const std::string &imgPath, float centerX, float centerY) : Controllable(imgPath, centerX, centerY)
     {
     }
-
 
     void Turtle::draw(const friimgui::Region &region) {
         const float thickness = 1;
@@ -137,6 +135,20 @@ namespace turtlepreter {
     std::string CommandRotate::toString()
     {
         return "Command Rotate " + std::to_string(m_angleRad) + "rad";
+    }
+
+    Tortoise::Tortoise(const std::string &imgPath) : Controllable(imgPath), Turtle(imgPath), Runner(imgPath, 0, 0)
+    {
+    }
+
+    Tortoise::Tortoise(const std::string &imgPath, float centerX, float centerY) : Controllable(imgPath, centerX, centerY), Turtle(imgPath, centerX, centerY), Runner(imgPath, centerX, centerY)
+    {
+    }
+
+    void Tortoise::reset()
+    {
+        Turtle::reset();
+        Perk::reset();
     }
 
 } // namespace turtlepreter

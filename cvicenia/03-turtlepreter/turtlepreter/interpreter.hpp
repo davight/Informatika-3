@@ -1,10 +1,9 @@
 #ifndef TURTLEPRETER_INTERPRETER_HPP
 #define TURTLEPRETER_INTERPRETER_HPP
 
-#include "turtle.hpp"
-
 #include <string>
 #include <vector>
+#include "controllable.hpp"
 
 namespace turtlepreter {
 
@@ -14,7 +13,7 @@ class Cursor;
 class Node {
 public:
 
-    static Node* createLeafeNode(ICommand *command);
+    static Node* createLeafNode(ICommand *command);
     static Node* createSequentialNode();
 
     /**
@@ -73,63 +72,6 @@ public:
 };
 
 // --------------------------------------------------
-
-    class TurtleCommand : public ICommand
-    {
-        protected:
-            void execute(Controllable &controllable) final;
-            bool canBeExecuted(Controllable &controllable) override;
-            virtual void executeOnTurtle(Turtle &turtle) = 0;
-    };
-
-/**
- * Posunie korytnačku o zadanú vzdialenosť v smere jej natočenia.
- */
-class CommandMove : public TurtleCommand {
-public:
-    CommandMove(float d);
-
-    void executeOnTurtle(Turtle &turtle) override;
-    std::string toString() override;
-
-private:
-    float m_d;
-};
-
-// --------------------------------------------------
-
-/**
- * Presunie korytnačku na zadané súradnice.
- */
-class CommandJump : public TurtleCommand {
-public:
-    CommandJump(float x, float y);
-
-    void executeOnTurtle(Turtle &turtle) override;
-    std::string toString() override;
-
-private:
-    float m_x;
-    float m_y;
-};
-
-// --------------------------------------------------
-
-/**
- * Zmení natočenie korytnačky.
- */
-class CommandRotate : public TurtleCommand {
-public:
-    CommandRotate(float angleRad);
-
-    void executeOnTurtle(Turtle &turtle) override;
-    std::string toString() override;
-
-private:
-    float m_angleRad;
-};
-
-// ==================================================
 
 class Interpreter {
 public:

@@ -10,7 +10,7 @@ namespace turtlepreter {
     /// Node
     ///
 
-    Node* Node::createLeafeNode(ICommand *command)
+    Node* Node::createLeafNode(ICommand *command)
     {
         return createNode(command, new CursorUp());
     }

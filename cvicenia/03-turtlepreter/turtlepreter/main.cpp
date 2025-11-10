@@ -12,6 +12,7 @@
 #include <numbers>
 #include <string>
 
+#include "config.hpp"
 #include "perk.hpp"
 #include "heap_monitor.hpp"
 
@@ -21,10 +22,10 @@ int main(int argc, char *argv[]) {
     (void)argc;
     (void)argv;
 
-    const std::string cTurtleImg = ".\\turtlepreter\\resources\\turtle.png";
-    const std::string cRunnerImg = ".\\turtlepreter\\resources\\runner.png";
-    const int cWidth = 1280;
-    const int cHeight = 720;
+    turtlepreter::Config config = turtlepreter::Config::createFromJsonFile(".\\turtlepreter\\resources\\config.json");
+    config.print(std::cout);
+    const int cWidth = config.getWidth();
+    const int cHeight = config.getHeight();
     const int cCenterX = cWidth / 2;
     const int cCenterY = cHeight / 2;
 
@@ -33,8 +34,9 @@ int main(int argc, char *argv[]) {
         = friimgui::Window::initializeWindow(cWidth, cHeight);
 
     // Create the turtle.
-    tp::Turtle turtle(cTurtleImg, cCenterX, cCenterY);
-    tp::Runner runner(cRunnerImg, cCenterX, cCenterY);
+    tp::Turtle turtle(config.getImageTurtle(), cCenterX, cCenterY);
+    tp::Runner runner(config.getImageRunner(), cCenterX, cCenterY);
+    tp::Tortoise tortois(config.getImageTortoise(), cCenterX, cCenterY);
 
     //tp::CommandJump *jump = new tp::CommandJump(0, 00);
     //tp::CommandMove *move = new tp::CommandMove(100);
@@ -51,8 +53,9 @@ int main(int argc, char *argv[]) {
     //turtleOtec->addSubnode(syn2);
 
     tp::CommandRun *run = new tp::CommandRun({10, 20});
+    tp::CommandRun *s = new tp::CommandRun({1, 2});
     //tp::Node *runnerOtec = tp::Node::createSequentialNode();
-    tp::Node *runNode2 = tp::Node::createLeafeNode(run);
+    tp::Node *runNode2 = tp::Node::createLeafNode(s);
     otec->addSubnode(runNode2);
 
     //otec->addSubnode(turtleOtec);
@@ -62,7 +65,7 @@ int main(int argc, char *argv[]) {
     tp::Interpreter interpreter(otec);
 
     // Create GUI.
-    tp::TurtleGUI turtleGUI(&runner, &interpreter);
+    tp::TurtleGUI turtleGUI(&tortois, &interpreter);
 
     // Render GUI.
     window->setGUI(&turtleGUI);

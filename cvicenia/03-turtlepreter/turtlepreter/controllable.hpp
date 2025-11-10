@@ -17,7 +17,8 @@ namespace turtlepreter
         public:
             Controllable(const std::string &path);
             Controllable(const std::string &path, float centerX, float centerY);
-            ~Controllable() = default;
+
+            virtual ~Controllable() = default;
             virtual void draw(const friimgui::Region &region);
             virtual void reset();
             friimgui::Transformation& getTransformation();

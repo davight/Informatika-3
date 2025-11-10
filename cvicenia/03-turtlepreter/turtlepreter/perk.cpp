@@ -3,8 +3,8 @@
 //
 
 #include "perk.hpp"
+#include "interpreter.hpp"
 
-#include <iostream>
 #include "heap_monitor.hpp"
 
 namespace turtlepreter
@@ -29,18 +29,8 @@ namespace turtlepreter
         m_stat--;
     }
 
-    Runner::Runner(const std::string &imgPath, float centerX, float centerY) : Perk(imgPath, centerX, centerY, MAX_STAMINA)
+    Runner::Runner(const std::string &imgPath, float centerX, float centerY) : Controllable(imgPath, centerX, centerY), Perk(imgPath, centerX, centerY, MAX_STAMINA)
     {
-    }
-
-    void Runner::draw(const friimgui::Region &region)
-    {
-        Controllable::draw(region);
-    }
-
-    void Runner::reset()
-    {
-        Controllable::reset();
     }
 
     bool Runner::hasStamina() const
@@ -77,18 +67,8 @@ namespace turtlepreter
         return "Command Run";
     }
 
-    Swimmer::Swimmer(const std::string &imgPath, float centerX, float centerY) : Perk(imgPath, centerX, centerY, MAX_OXYGEN)
+    Swimmer::Swimmer(const std::string &imgPath, float centerX, float centerY) : Controllable(imgPath, centerX, centerY), Perk(imgPath, centerX, centerY, MAX_OXYGEN)
     {
-    }
-
-    void Swimmer::reset()
-    {
-        Perk::reset();
-    }
-
-    void Swimmer::draw(const friimgui::Region &region)
-    {
-        Perk::draw(region);
     }
 
     bool Swimmer::hasOxygen() const
@@ -113,7 +93,7 @@ namespace turtlepreter
     void CommandSwim::execute(Controllable &controllable)
     {
         Swimmer *swimmer = dynamic_cast<Swimmer*>(&controllable);
-        if (swimmer != nullptr)
+        if (swimmer != nullptr && swimmer->hasOxygen())
         {
             swimmer->useOxygen();
             swimmer->getTransformation().translation.setValue(m_d);
@@ -124,6 +104,5 @@ namespace turtlepreter
     {
         return "Command Swim";
     }
-
 
 } // turtlepreter

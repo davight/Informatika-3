@@ -2,8 +2,8 @@
 // Created by david on 11/3/2025.
 //
 
-#ifndef INFORMATIKA3_PERK_HPP
-#define INFORMATIKA3_PERK_HPP
+#ifndef TURTLEPRETER_PERK_HPP
+#define TURTLEPRETER_PERK_HPP
 #include <string>
 
 #include "controllable.hpp"
@@ -11,7 +11,8 @@
 
 namespace turtlepreter
 {
-    class Perk : public Controllable {
+
+    class Perk : virtual public Controllable {
         public:
             Perk(const std::string &imgPath, float centerX, float centerY, int fullStat);
             void reset() override;
@@ -26,8 +27,7 @@ namespace turtlepreter
     class Runner : public Perk {
         public:
             Runner(const std::string &imgPath, float centerX, float centerY);
-            void draw(const friimgui::Region &region) override;
-            void reset() override;
+            //void draw(const friimgui::Region &region) override;
             bool hasStamina() const;
             void useStamina();
         private:
@@ -48,8 +48,7 @@ namespace turtlepreter
     class Swimmer : public Perk {
         public:
             Swimmer(const std::string &imgPath, float centerX, float centerY);
-            void draw(const friimgui::Region &region) override;
-            void reset() override;
+            //void draw(const friimgui::Region &region) override;
             bool hasOxygen() const;
             void useOxygen();
         private:
@@ -69,4 +68,4 @@ namespace turtlepreter
 
 } // turtlepreter
 
-#endif //INFORMATIKA3_PERK_HPP
+#endif //TURTLEPRETER_PERK_HPP
