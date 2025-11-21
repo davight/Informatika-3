@@ -37,7 +37,7 @@ namespace turtlepreter {
         {
             delete subnode;
         }
-        delete m_parent;
+        //delete m_parent;
         delete m_command;
         delete m_cursor;
     }

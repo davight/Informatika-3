@@ -52,10 +52,10 @@ int main(int argc, char *argv[]) {
     //turtleOtec->addSubnode(syn1);
     //turtleOtec->addSubnode(syn2);
 
-    tp::CommandRun *run = new tp::CommandRun({10, 20});
-    tp::CommandRun *s = new tp::CommandRun({1, 2});
+    tp::CommandRun run = tp::CommandRun({10, 20});
+    tp::CommandRun s = tp::CommandRun({1, 2});
     //tp::Node *runnerOtec = tp::Node::createSequentialNode();
-    tp::Node *runNode2 = tp::Node::createLeafNode(s);
+    tp::Node *runNode2 = tp::Node::createLeafNode(&s);
     otec->addSubnode(runNode2);
 
     //otec->addSubnode(turtleOtec);
