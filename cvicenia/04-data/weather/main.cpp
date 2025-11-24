@@ -32,8 +32,14 @@ int main(int argc, char *argv[]) {
         std::cout << record->city << " " << record->tempMax << "°C " << record->elevation << "mnm." << std::endl;
     }
 
-
     auto mean = weatherDataFrame.mean<float>(weather::WRElevationExtractor());
     std::cout << "Mean: " << mean << std::endl;
+
+    // weird ass lambdy [external access](param) -> rettype {body}
+    weatherDataFrame.apply([](const weather::WeatherRecord &rec) -> void
+    {
+        std::cout << "idk sprav neco: " << rec.city << std::endl;
+    });
+
     return 0;
 }

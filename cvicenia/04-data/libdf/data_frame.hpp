@@ -22,6 +22,9 @@ namespace df {
 
             template<typename ValueType, typename Extractor>
             const ValueType mean(Extractor extractor) const;
+
+            template<typename F>
+            void apply(F fun) const;
         private:
             std::vector<T> m_data;
     };
@@ -97,13 +100,24 @@ namespace df {
     const ValueType DataFrame<T>::mean(Extractor extractor) const
     {
         ValueType sum {};
-        ValueType size = static_cast<ValueType>(m_data.size());
+        auto size = static_cast<ValueType>(m_data.size());
         for (const T &value : m_data)
         {
             sum += static_cast<ValueType>(extractor(value));
         }
         return sum / size;
     }
+
+    template<typename T>
+    template<typename F>
+    void DataFrame<T>::apply(F fun) const
+    {
+        for (auto &value : m_data)
+        {
+            fun(value);
+        }
+    }
+
 
 } // namespace df
 
