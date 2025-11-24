@@ -18,6 +18,34 @@ namespace weather {
         int elevation;
     };
 
+    struct WRTempMinExtractor {
+        float operator()(const WeatherRecord &record) const
+        {
+            return record.tempMin;
+        }
+    };
+
+    struct WRTempMaxExtractor {
+        float operator()(const WeatherRecord &record) const
+        {
+            return record.tempMax;
+        }
+    };
+
+    struct FreezingFilter {
+        bool operator()(const WeatherRecord &record) const
+        {
+            return record.tempMin < 0;
+        }
+    };
+
+    struct WRElevationExtractor {
+        float operator()(const WeatherRecord &record) const
+        {
+            return record.elevation;
+        }
+    };
+
     class WeatherLoader : public df::CSVLoader<WeatherRecord> {
         public:
             using BaseClass = df::CSVLoader<WeatherRecord>;
