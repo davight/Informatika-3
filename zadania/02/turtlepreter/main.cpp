@@ -52,13 +52,6 @@ int main() {
     window->run();
     friimgui::Window::releaseWindow();
 
-    std::cout << turtle.getPathSegmentCount() << "segment count\n";
-    std::cout << turtle.getPathSegmentPoints(1).x << " " << turtle.getPathSegmentPoints(1).y << "\n";
-    std::cout << turtle.getPathSegmentColor(0).Value.x << " " << turtle.getPathSegmentColor(0).Value.y << " " << turtle.getPathSegmentColor(0).Value.z << std::endl;
-    std::cout << std::endl;
-
-
-
     if (turtle.getPathSegmentCount() ) {
         (void)turtle.getPathSegmentPoints(0);
         (void)turtle.getPathSegmentColor(0);
