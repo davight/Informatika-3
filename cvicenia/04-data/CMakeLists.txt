@@ -14,3 +14,5 @@ add_subdirectory(external)
 add_subdirectory(libdf)
 
 add_subdirectory(weather)
+
+add_subdirectory(pokemon)

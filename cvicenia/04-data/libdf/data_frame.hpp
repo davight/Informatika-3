@@ -37,7 +37,7 @@ namespace df {
     template<typename T>
     void DataFrame<T>::print(std::ostream &ost) const
     {
-        ost << "Pocet dat: " << m_data.size() << "\n";
+        //ost << "Pocet dat: " << m_data.size() << "\n";
     }
 
     template<typename T>

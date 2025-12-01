@@ -1,4 +1,5 @@
 #include "csv_config.hpp"
+#include "json_loader.hpp"
 
 #include <fstream>
 #include <stdexcept>
