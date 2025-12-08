@@ -1,0 +1,605 @@
+151
+Bulbasaur
+6.9
+0.71
+2 Grass Poison
+Ivysaur
+13
+0.99
+2 Grass Poison
+Venusaur
+100
+2.01
+2 Grass Poison
+Charmander
+8.5
+0.61
+1 Fire
+Charmeleon
+19
+1.09
+1 Fire
+Charizard
+90.5
+1.7
+2 Fire Flying
+Squirtle
+9
+0.51
+1 Water
+Wartortle
+22.5
+0.99
+1 Water
+Blastoise
+85.5
+1.6
+1 Water
+Caterpie
+2.9
+0.3
+1 Bug
+Metapod
+9.9
+0.71
+1 Bug
+Butterfree
+32
+1.09
+2 Bug Flying
+Weedle
+3.2
+0.3
+2 Bug Poison
+Kakuna
+10
+0.61
+2 Bug Poison
+Beedrill
+29.5
+0.99
+2 Bug Poison
+Pidgey
+1.8
+0.3
+2 Normal Flying
+Pidgeotto
+30
+1.09
+2 Normal Flying
+Pidgeot
+39.5
+1.5
+2 Normal Flying
+Rattata
+3.5
+0.3
+1 Normal
+Raticate
+18.5
+0.71
+1 Normal
+Spearow
+2
+0.3
+2 Normal Flying
+Fearow
+38
+1.19
+2 Normal Flying
+Ekans
+6.9
+2.01
+1 Poison
+Arbok
+65
+3.51
+1 Poison
+Pikachu
+6
+0.41
+1 Electric
+Raichu
+30
+0.79
+1 Electric
+Sandshrew
+12
+0.61
+1 Ground
+Sandslash
+29.5
+0.99
+1 Ground
+Nidoran♀(Female)
+7
+0.41
+1 Poison
+Nidorina
+20
+0.79
+1 Poison
+Nidoqueen
+60
+1.3
+2 Poison Ground
+Nidoran♂(Male)
+9
+0.51
+1 Poison
+Nidorino
+19.5
+0.89
+1 Poison
+Nidoking
+62
+1.4
+2 Poison Ground
+Clefairy
+7.5
+0.61
+1 Normal
+Clefable
+40
+1.3
+1 Normal
+Vulpix
+9.9
+0.61
+1 Fire
+Ninetales
+19.9
+1.09
+1 Fire
+Jigglypuff
+5.5
+0.51
+1 Normal
+Wigglytuff
+12
+0.99
+1 Normal
+Zubat
+7.5
+0.79
+2 Poison Flying
+Golbat
+55
+1.6
+2 Poison Flying
+Oddish
+5.4
+0.51
+2 Grass Poison
+Gloom
+8.6
+0.79
+2 Grass Poison
+Vileplume
+18.6
+1.19
+2 Grass Poison
+Paras
+5.4
+0.3
+2 Bug Grass
+Parasect
+29.5
+0.99
+2 Bug Grass
+Venonat
+30
+0.99
+2 Bug Poison
+Venomoth
+12.5
+1.5
+2 Bug Poison
+Diglett
+0.8
+0.2
+1 Ground
+Dugtrio
+33.3
+0.71
+1 Ground
+Meowth
+4.2
+0.41
+1 Normal
+Persian
+32
+0.99
+1 Normal
+Psyduck
+19.6
+0.79
+1 Water
+Golduck
+76.6
+1.7
+1 Water
+Mankey
+28
+0.51
+1 Fighting
+Primeape
+32
+0.99
+1 Fighting
+Growlithe
+19
+0.71
+1 Fire
+Arcanine
+155
+1.91
+1 Fire
+Poliwag
+12.4
+0.61
+1 Water
+Poliwhirl
+20
+0.99
+1 Water
+Poliwrath
+54
+1.3
+2 Water Fighting
+Abra
+19.5
+0.89
+1 Psychic
+Kadabra
+56.5
+1.3
+1 Psychic
+Alakazam
+48
+1.5
+1 Psychic
+Machop
+19.5
+0.79
+1 Fighting
+Machoke
+70.5
+1.5
+1 Fighting
+Machamp
+130
+1.6
+1 Fighting
+Bellsprout
+4
+0.71
+2 Grass Poison
+Weepinbell
+6.4
+0.99
+2 Grass Poison
+Victreebel
+15.5
+1.7
+2 Grass Poison
+Tentacool
+45.5
+0.89
+2 Water Poison
+Tentacruel
+55
+1.6
+2 Water Poison
+Geodude
+20
+0.41
+2 Rock Ground
+Graveler
+105
+0.99
+2 Rock Ground
+Golem
+300
+1.4
+2 Rock Ground
+Ponyta
+30
+0.99
+1 Fire
+Rapidash
+95
+1.7
+1 Fire
+Slowpoke
+36
+1.19
+2 Water Psychic
+Slowbro
+78.5
+1.6
+2 Water Psychic
+Magnemite
+6
+0.3
+1 Electric
+Magneton
+60
+0.99
+1 Electric
+Farfetch'd
+15
+0.79
+2 Normal Flying
+Doduo
+39.2
+1.4
+2 Normal Flying
+Dodrio
+85.2
+1.8
+2 Normal Flying
+Seel
+90
+1.09
+1 Water
+Dewgong
+120
+1.7
+2 Water Ice
+Grimer
+30
+0.89
+1 Poison
+Muk
+30
+1.19
+1 Poison
+Shellder
+4
+0.3
+1 Water
+Cloyster
+132.5
+1.5
+2 Water Ice
+Gastly
+0.1
+1.3
+2 Ghost Poison
+Haunter
+0.1
+1.6
+2 Ghost Poison
+Gengar
+40.5
+1.5
+2 Ghost Poison
+Onix
+210
+8.79
+2 Rock Ground
+Drowzee
+32.4
+0.99
+1 Psychic
+Hypno
+75.6
+1.6
+1 Psychic
+Krabby
+6.5
+0.41
+1 Water
+Kingler
+60
+1.3
+1 Water
+Voltorb
+10.4
+0.51
+1 Electric
+Electrode
+66.6
+1.19
+1 Electric
+Exeggcute
+2.5
+0.41
+2 Grass Psychic
+Exeggutor
+120
+2.01
+2 Grass Psychic
+Cubone
+6.5
+0.41
+1 Ground
+Marowak
+45
+0.99
+1 Ground
+Hitmonlee
+49.8
+1.5
+1 Fighting
+Hitmonchan
+50.2
+1.4
+1 Fighting
+Lickitung
+65.5
+1.19
+1 Normal
+Koffing
+1
+0.61
+1 Poison
+Weezing
+9.5
+1.19
+1 Poison
+Rhyhorn
+115
+0.99
+2 Ground Rock
+Rhydon
+120
+1.91
+2 Ground Rock
+Chansey
+34.6
+1.09
+1 Normal
+Tangela
+35
+0.99
+1 Grass
+Kangaskhan
+80
+2.21
+1 Normal
+Horsea
+8
+0.41
+1 Water
+Seadra
+25
+1.19
+1 Water
+Goldeen
+15
+0.61
+1 Water
+Seaking
+39
+1.3
+1 Water
+Staryu
+34.5
+0.79
+1 Water
+Starmie
+80
+1.09
+2 Water Psychic
+Mr.Mime
+54.5
+1.3
+1 Psychic
+Scyther
+56
+1.5
+2 Bug Flying
+Jynx
+40.6
+1.4
+2 Ice Psychic
+Electabuzz
+30
+1.09
+1 Electric
+Magmar
+44.5
+1.3
+1 Fire
+Pinsir
+55
+1.5
+1 Bug
+Tauros
+88.4
+1.4
+1 Normal
+Magikarp
+10
+0.89
+1 Water
+Gyarados
+235
+6.5
+2 Water Flying
+Lapras
+220
+2.49
+2 Water Ice
+Ditto
+4
+0.3
+1 Normal
+Eevee
+6.5
+0.3
+1 Normal
+Vaporeon
+29
+0.99
+1 Water
+Jolteon
+24.5
+0.79
+1 Electric
+Flareon
+25
+0.89
+1 Fire
+Porygon
+36.5
+0.79
+1 Normal
+Omanyte
+7.5
+0.41
+2 Rock Water
+Omastar
+35
+0.99
+2 Rock Water
+Kabuto
+11.5
+0.51
+2 Rock Water
+Kabutops
+40.5
+1.3
+2 Rock Water
+Aerodactyl
+59
+1.8
+2 Rock Flying
+Snorlax
+460
+2.11
+1 Normal
+Articuno
+55.4
+1.7
+2 Ice Flying
+Zapdos
+52.6
+1.6
+2 Electric Flying
+Moltres
+60
+2.01
+2 Fire Flying
+Dratini
+3.3
+1.8
+1 Dragon
+Dragonair
+16.5
+3.99
+1 Dragon
+Dragonite
+210
+2.21
+2 Dragon Flying
+Mewtwo
+122
+2.01
+1 Psychic
+Mew
+4
+0.41
+1 Psychic

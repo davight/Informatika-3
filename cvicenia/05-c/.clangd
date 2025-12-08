@@ -1,0 +1,16 @@
+Completion:
+  AllScopes: No
+  ArgumentLists: OpenDelimiter
+  HeaderInsertion: Never
+  CodePatterns: None
+
+InlayHints:
+  BlockEnd: false
+  Designators: false
+  Enabled: true
+  ParameterNames: false
+  DeducedTypes: false
+  DefaultArguments: false
+
+Hover:
+  ShowAKA: true
