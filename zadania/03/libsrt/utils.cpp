@@ -11,7 +11,7 @@ namespace srt
 {
     namespace utils
     {
-        std::string Utils::msToStr(std::chrono::milliseconds chronoms)
+        std::string msToStr(std::chrono::milliseconds chronoms)
         {
             long long count = chronoms.count();
 
@@ -29,7 +29,7 @@ namespace srt
             return buffer;
         }
 
-        std::chrono::milliseconds Utils::strToMs(std::string_view str)
+        std::chrono::milliseconds strToMs(std::string_view str)
         {
             int hod = std::stoi(std::string(str.substr(0, 2)));
             int min = std::stoi(std::string(str.substr(3, 2)));

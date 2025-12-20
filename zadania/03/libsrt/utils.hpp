@@ -11,11 +11,8 @@ namespace srt
 {
     namespace utils
     {
-        class Utils {
-            public:
-                static std::chrono::milliseconds strToMs(std::string_view str);
-                static std::string msToStr(std::chrono::milliseconds ms);
-        };
+        std::chrono::milliseconds strToMs(std::string_view str);
+        std::string msToStr(std::chrono::milliseconds ms);
     }
 }
 

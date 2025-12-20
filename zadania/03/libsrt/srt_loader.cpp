@@ -42,11 +42,11 @@ namespace srt
         Subtitles subs;
         subs.id = std::stoi(segment[0]);
         const int pos = segment[1].find(" --> ");
-        subs.from = utils::Utils::strToMs(segment[1].substr(0, pos));
-        subs.to = utils::Utils::strToMs(segment[1].substr(pos + 5));
+        subs.from = utils::strToMs(segment[1].substr(0, pos));
+        subs.to = utils::strToMs(segment[1].substr(pos + 5));
         if (segment.size() > 2)
         {
-            for (int i = 2; i < segment.size(); i++)
+            for (size_t i = 2; i < segment.size(); i++)
             {
                 subs.text += segment[i] + "\n";
             }

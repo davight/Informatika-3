@@ -15,8 +15,8 @@ namespace srt
         nlohmann::json json;
         json["id"] = record.id;
         json["text"] = record.text;
-        json["from"] = utils::Utils::msToStr(record.from);
-        json["to"] = utils::Utils::msToStr(record.to);
+        json["from"] = utils::msToStr(record.from);
+        json["to"] = utils::msToStr(record.to);
         return json;
     }
 
@@ -25,7 +25,7 @@ namespace srt
         df.apply([&ost](const Subtitles &sub) -> void
         {
             ost << std::to_string(sub.id) << "\n";
-            ost << utils::Utils::msToStr(sub.from) << " --> " << utils::Utils::msToStr(sub.to) << "\n";
+            ost << utils::msToStr(sub.from) << " --> " << utils::msToStr(sub.to) << "\n";
             ost << sub.text;
 
             ost << "\n";
