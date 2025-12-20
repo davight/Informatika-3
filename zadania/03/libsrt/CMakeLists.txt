@@ -1,4 +1,4 @@
-add_library(srt)
+add_library(srt STATIC)
 
 target_include_directories(srt PUBLIC ..)
 
