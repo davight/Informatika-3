@@ -25,7 +25,7 @@ namespace setvis
             void showDifference(uint64_t a, uint64_t b);
             void showComplement(uint64_t a);
         private:
-            void show(set_vis::Matrix *mA, set_vis::Matrix *mB, set_vis::Matrix *mC);
+            void show(set_vis::Matrix mA, set_vis::Matrix mB, set_vis::Matrix mC);
     };
 }
 
